@@ -5,8 +5,10 @@ import java.util.Set;
 import com.google.common.collect.Sets;
 
 public enum UserRoles {
-    STUDENT(Sets.newHashSet()), ADMIN(Sets.newHashSet(UserPermissions.STUDENT_WRITE, UserPermissions.STUDENT_READ,
-            UserPermissions.COURSE_READ, UserPermissions.COURSE_WRITE));
+    STUDENT(Sets.newHashSet()),
+    ADMIN(Sets.newHashSet(UserPermissions.STUDENT_WRITE, UserPermissions.STUDENT_READ, UserPermissions.COURSE_READ,
+            UserPermissions.COURSE_WRITE)),
+    ADMINTRAINEE(Sets.newHashSet(UserPermissions.STUDENT_READ, UserPermissions.COURSE_READ));
 
     private final Set<UserPermissions> permissions;
 

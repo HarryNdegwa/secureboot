@@ -22,19 +22,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // authorize all requests using http basic authentication
-        http.authorizeRequests().antMatchers("/", "/css/*", "/js/*").permitAll().anyRequest().authenticated().and()
-                .httpBasic();
+        http.authorizeRequests().antMatchers("/", "/css/*", "/js/*").permitAll().antMatchers("/api/**")
+                .hasRole(UserRoles.STUDENT.name()).anyRequest().authenticated().and().httpBasic();
     }
 
     @Override
     @Bean
     protected UserDetailsService userDetailsService() {
         UserDetails user = User.builder().username("harry").password(passwordEncoder.encode("password"))
-                .roles("STUDENT").build();
+                .roles(UserRoles.STUDENT.name()).build();
 
         UserDetails admin = User.builder().username("mike").password(passwordEncoder.encode("password1234"))
-                .roles("ADMIN").build();
-        return new InMemoryUserDetailsManager(user, admin);
+                .roles(UserRoles.ADMIN.name()).build();
+
+        UserDetails adminTrainee = User.builder().username("tom").password(passwordEncoder.encode("password"))
+                .roles(UserRoles.ADMINTRAINEE.name()).build();
+        return new InMemoryUserDetailsManager(user, admin, adminTrainee);
 
     }
 }
