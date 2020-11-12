@@ -12,11 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/v1/students")
 public class StudentController {
 
+    List<String> students = new ArrayList<>();
+
     @GetMapping("/")
     public ResponseEntity<?> students() {
-
-        List<String> students = new ArrayList<>();
-
         students.add("Harry");
         students.add("Kevin");
         students.add("Mike");
