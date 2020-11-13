@@ -1,6 +1,5 @@
 package com.example.demo.controllers;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,14 +16,11 @@ public class StudentController {
 
     // List<String> students = new ArrayList<>();
 
-    List<Student> students = Arrays.asList(new Student("Mike","mike24"))
+    List<Student> students = Arrays.asList(new Student("Mike", "mike24"), new Student("Tom", "Tom24"),
+            new Student("Linda", "Linda24"));
 
     @GetMapping("/")
     public ResponseEntity<?> students() {
-        students.add("Harry");
-        students.add("Kevin");
-        students.add("Mike");
-
         return ResponseEntity.ok().body(students);
     }
 
