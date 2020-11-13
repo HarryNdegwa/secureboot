@@ -27,11 +27,10 @@ public class StudentManagementControlelr {
 
     @PostMapping("/add/student")
     public ResponseEntity<?> registerStudent(@RequestBody Student student) {
-        students.add(student);
         return ResponseEntity.ok().body("Created user!");
     }
 
-    @DeleteMapping("/delete/student/{id}")
+    @DeleteMapping("/delete/student")
     public ResponseEntity<?> deleteStudent() {
         return ResponseEntity.ok().body("Deleted student!");
 
