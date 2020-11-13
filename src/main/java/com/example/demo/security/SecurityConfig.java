@@ -25,7 +25,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         @Override
         protected void configure(HttpSecurity http) throws Exception {
                 // authorize all requests using http basic authentication
-                http.csrf().disable().authorizeRequests().antMatchers("/", "/css/*", "/js/*").permitAll()
+                http
+                                // .csrf().disable()
+                                .authorizeRequests().antMatchers("/", "/css/*", "/js/*").permitAll()
                                 // giving access to students
                                 .antMatchers("/api/**").hasRole(UserRoles.STUDENT.name())
                                 // limiting access to users with different permissions
