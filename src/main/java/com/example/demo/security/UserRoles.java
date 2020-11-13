@@ -1,7 +1,6 @@
 package com.example.demo.security;
 
 import java.util.Set;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import com.google.common.collect.Sets;
