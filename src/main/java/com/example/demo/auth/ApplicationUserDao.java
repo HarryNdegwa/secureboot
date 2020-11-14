@@ -4,6 +4,6 @@ import java.util.Optional;
 
 public interface ApplicationUserDao {
 
-    Optional<ApplicationUserDetails> selectApplicationUserByUsername(String username);
+    Optional<ApplicationUser> selectApplicationUserByUsername(String username);
 
 }

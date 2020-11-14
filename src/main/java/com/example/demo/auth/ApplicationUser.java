@@ -5,7 +5,7 @@ import java.util.Set;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-public class ApplicationUserDetails implements UserDetails {
+public class ApplicationUser implements UserDetails {
 
     private static final long serialVersionUID = 1L;
 
@@ -23,7 +23,7 @@ public class ApplicationUserDetails implements UserDetails {
 
     private final boolean isEnabled;
 
-    ApplicationUserDetails(Set<? extends GrantedAuthority> authorities, String password, String username,
+    ApplicationUser(String username, String password, Set<? extends GrantedAuthority> authorities,
             boolean isAccountNonExpired, boolean isAccountNonLocked, boolean isCredentialsNonExpired,
             boolean isEnabled) {
 
