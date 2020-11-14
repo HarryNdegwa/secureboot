@@ -1,6 +1,6 @@
 package com.example.demo.auth;
 
-import java.util.Collection;
+import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,7 +9,7 @@ public class ApplicationUserDetails implements UserDetails {
 
     private static final long serialVersionUID = 1L;
 
-    private final Collection<? extends GrantedAuthority> authorities;
+    private final Set<? extends GrantedAuthority> authorities;
 
     private final String password;
 
@@ -23,7 +23,7 @@ public class ApplicationUserDetails implements UserDetails {
 
     private final boolean isEnabled;
 
-    ApplicationUserDetails(Collection<? extends GrantedAuthority> authorities, String password, String username,
+    ApplicationUserDetails(Set<? extends GrantedAuthority> authorities, String password, String username,
             boolean isAccountNonExpired, boolean isAccountNonLocked, boolean isCredentialsNonExpired,
             boolean isEnabled) {
 
@@ -37,7 +37,7 @@ public class ApplicationUserDetails implements UserDetails {
     }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
+    public Set<? extends GrantedAuthority> getAuthorities() {
         return authorities;
     }
 
