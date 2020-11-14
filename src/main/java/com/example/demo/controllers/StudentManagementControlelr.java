@@ -39,7 +39,6 @@ public class StudentManagementControlelr {
     @PreAuthorize("hasAuthority('course:write')")
     public ResponseEntity<?> deleteStudent() {
         return ResponseEntity.ok().body("Deleted student!");
-
     }
 
 }
