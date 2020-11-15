@@ -7,6 +7,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public class ApplicationUser implements UserDetails {
 
+    // UserDetails is an interface
+
     private static final long serialVersionUID = 1L;
 
     private final Set<? extends GrantedAuthority> authorities;
