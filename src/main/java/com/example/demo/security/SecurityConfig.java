@@ -46,9 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                 // giving access to both admins and admin trainees
                                 // .antMatchers(HttpMethod.GET, "/management/api/**")
                                 // .hasAnyRole(UserRoles.ADMIN.name(), UserRoles.ADMINTRAINEE.name())
-                                .anyRequest().authenticated().and()
-                                // .httpBasic();
-                                .formLogin();
+                                .anyRequest().authenticated();
         }
 
         @Override
