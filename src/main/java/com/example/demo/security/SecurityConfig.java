@@ -1,6 +1,7 @@
 package com.example.demo.security;
 
 import com.example.demo.auth.ApplicationUserService;
+import com.example.demo.security.jwt.JwtTokenVerifier;
 import com.example.demo.security.jwt.JwtUsernameAndPasswordAuthFilter;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // authorize all requests using http basic authentication
                 http.csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                                 .addFilter(new JwtUsernameAndPasswordAuthFilter(authenticationManager()))
+                                .addFilterAfter(new JwtTokenVerifier(), JwtUsernameAndPasswordAuthFilter.class)
                                 .authorizeRequests().antMatchers("/", "/css/*", "/js/*").permitAll()
                                 // giving access to students
                                 .antMatchers("/api/**").hasRole(UserRoles.STUDENT.name())
