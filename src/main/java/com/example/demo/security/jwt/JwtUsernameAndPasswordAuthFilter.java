@@ -17,10 +17,15 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 
 public class JwtUsernameAndPasswordAuthFilter extends UsernamePasswordAuthenticationFilter {
 
     private final AuthenticationManager authenticationManager;
+
+    public JwtUsernameAndPasswordAuthFilter(AuthenticationManager authenticationManager) {
+        this.authenticationManager = authenticationManager;
+    }
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) {
@@ -44,10 +49,11 @@ public class JwtUsernameAndPasswordAuthFilter extends UsernamePasswordAuthentica
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain Chain,
             Authentication auth) {
 
+        String key = "securesecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecure";
         // this method will be called on successful authentication in the above method
         String token = Jwts.builder().setSubject(auth.getName()).claim("subject", auth.getAuthorities())
                 .setIssuedAt(new Date()).setExpiration(java.sql.Date.valueOf(LocalDate.now().plusWeeks(2)))
-                .signWith(SignatureAlgorithm.HS512, "securesecuresecuresecuresecuresecuresecure").compact();
+                .signWith(Keys.hmacShaKeyFor(key.getBytes())).compact();
 
         response.addHeader("Authorization", "Bearer " + token);
     }
